@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechVision - Soluções Inovadoras</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+    <style>
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --dark-color: #212529;
+            --light-color: #f8f9fa;
+            --accent-color: #20c997;
+        }
+        
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            overflow-x: hidden;
+        }
+        
+        .navbar {
+            transition: all 0.3s ease;
+            padding: 15px 0;
+        }
+        
+        .navbar.scrolled {
+            padding: 8px 0;
+            background-color: rgba(255, 255, 255, 0.98) !important;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #0b5ed7 100%);
+            color: white;
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4ab0974b-db42-4f4b-89c2-49104c467acb.png') no-repeat center center/cover;
+            opacity: 0.1;
+            z-index: 0;
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            padding: 10px 25px;
+            font-weight: 500;
+        }
+        
+        .btn-outline-light {
+            padding: 10px 25px;
+            font-weight: 500;
+        }
+        
+        .section-title {
+            position: relative;
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 60px;
+            height: 3px;
+            background-color: var(--accent-color);
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        .service-card {
+            padding: 30px 20px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border-color: var(--accent-color);
+        }
+        
+        .service-icon {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+        
+        .about-img {
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+        
+        .feature-item {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .feature-icon {
+            background-color: rgba(13, 110, 253, 0.1);
+            color: var(--primary-color);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+        }
+        
+        .portfolio-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+        
+        .portfolio-img {
+            transition: all 0.5s ease;
+        }
+        
+        .portfolio-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+        
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+        
+        .portfolio-item:hover .portfolio-img {
+            transform: scale(1.1);
+        }
+        
+        .testimonial-card {
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            background-color: white;
+            position: relative;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        
+        .testimonial-card::before {
+            content: '\201C';
+            font-family: Georgia, serif;
+            font-size: 60px;
+            color: rgba(13, 110, 253, 0.1);
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            line-height: 1;
+        }
+        
+        .client-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 15px;
+            object-fit: cover;
+        }
+        
+        .footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 80px 0 0;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            display: block;
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+        
+        .social-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-icon:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-5px);
+        }
+        
+        .copyright {
+            background-color: rgba(0, 0, 0, 0.2);
+            padding: 20px 0;
+            margin-top: 50px;
+        }
+        
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .back-to-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-section {
+                padding: 80px 0;
+                text-align: center;
+            }
+            
+            .hero-section h1 {
+                font-size: 2.2rem;
+            }
+            
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .feature-icon {
+                margin: 0 auto 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold" href="#">
+                <span class="text-primary">Tech</span>Vision
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Serviços</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfólio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contato</a>
+                    </li>
+                    <li class="nav-item ms-lg-3">
+                        <a class="btn btn-primary mt-2 mt-lg-0" href="#contact">Fale conosco</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <div class="row align-items-center">
+                    <div class="col-lg-6">
+                        <h1 class="display-4 fw-bold mb-4">Inovação Tecnológica para seu Negócio</h1>
+                        <p class="lead mb-4">Desenvolvemos soluções digitais personalizadas para alavancar sua empresa no mercado.</p>
+                        <div class="d-flex gap-3">
+                            <a href="#contact" class="btn btn-light">Fale conosco</a>
+                            <a href="#services" class="btn btn-outline-light">Nossos serviços</a>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/4b652233-9980-47b1-867e-91913ff636d3.png" alt="Equipe jovem e diversificada de desenvolvedores trabalhando em moderno escritório de tecnologia" class="img-fluid d-none d-lg-block">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-5 my-5">
+        <div class="container">
+            <h2 class="text-center section-title">Nossos Serviços</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="bi bi-code-square"></i>
+                        </div>
+                        <h4>Desenvolvimento Web</h4>
+                        <p>Sites e sistemas web responsivos e otimizados para todos os dispositivos com as melhores tecnologias do mercado.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="bi bi-phone"></i>
+                        </div>
+                        <h4>Aplicativos Mobile</h4>
+                        <p>Aplicativos nativos e híbridos para iOS e Android com designs intuitivos e alta performance.</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="service-card text-center">
+                        <div class="service-icon">
+                            <i class="bi bi-cloud"></i>
+                        </div>
+                        <h4>Soluções em Cloud</h4>
+                        <p>Infraestrutura e aplicações em nuvem para escalabilidade, segurança e redução de custos.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5 my-5 bg-light">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h2 class="section-title">Sobre Nós</h2>
+                    <p class="lead">A TechVision nasceu da paixão por tecnologia e inovação, com o objetivo de transformar negócios através de soluções digitais.</p>
+                    <p>Fundada em 2020 por um grupo de especialistas em tecnologia, nossa startup já atendeu mais de 50 clientes em todo o Brasil, ajudando empresas de diversos segmentos a alcançar seus objetivos através da tecnologia.</p>
+                    <div class="row mt-4">
+                        <div class="col-6">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="bi bi-people"></i>
+                                </div>
+                                <div>
+                                    <h5>Equipe Qualificada</h5>
+                                    <p class="small">Profissionais certificados e experientes</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="feature-item">
+                                <div class="feature-icon">
+                                    <i class="bi bi-check2-circle"></i>
+                                </div>
+                                <div>
+                                    <h5>Metodologia Ágil</h5>
+                                    <p class="small">Trabalhamos com Scrum e Lean</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <div class="about-img">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/a8b4dfc8-f37b-4634-b16f-7c33470859f1.png" alt="Equipe da TechVision em reunião de brainstorm em moderno escritório com paredes de vidro e quadro branco" class="img-fluid w-100">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-5 my-5">
+        <div class="container">
+            <h2 class="text-center section-title">Nosso Portfólio</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="portfolio-item">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/2b22380c-6ddc-4d99-bc68-6750ca751eb6.png" alt="Dashboard administrativo moderno com gráficos e métricas de performance" class="portfolio-img w-100">
+                        <div class="portfolio-overlay">
+                            <h5>Sistema de Gestão</h5>
+                            <p>ERPs customizados</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="portfolio-item">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/d70634af-fb9e-4e43-8086-8217fb35a089.png" alt="Aplicativo de delivery com interface intuitiva e design colorido" class="portfolio-img w-100">
+                        <div class="portfolio-overlay">
+                            <h5>App de Delivery</h5>
+                            <p>Plataforma mobile</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="portfolio-item">
+                        <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/07e3eed3-be64-4a9a-a260-8807a0991820.png" alt="Framework de chatbot com interface de configuração e painel de análise" class="portfolio-img w-100">
+                        <div class="portfolio-overlay">
+                            <h5>Chatbot Inteligente</h5>
+                            <p>Solução de atendimento</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="py-5 my-5 bg-light">
+        <div class="container">
+            <h2 class="text-center section-title">Depoimentos</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p class="mb-4">"A TechVision revolucionou nosso negócio com uma plataforma digital completa. O atendimento e qualidade são excepcionais."</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5eebe392-1ff6-4a32-ba33-a64a00ca5152.png" alt="Foto de Carlos Albuquerque, diretor da empresa VarejoPlus" class="client-img">
+                            <div>
+                                <h6 class="mb-0">Carlos Albuquerque</h6>
+                                <small class="text-muted">Diretor - VarejoPlus</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p class="mb-4">"Incrível como aceleraram nosso processo de vendas com uma solução sob medida. Parceiros tecnológicos que realmente entendem nosso negócio."</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/e03a6f03-6d00-4ece-abd7-f7601b100689.png" alt="Foto de Ana Santos, gerente de marketing da FinTech Solutions" class="client-img">
+                            <div>
+                                <h6 class="mb-0">Ana Santos</h6>
+                                <small class="text-muted">Gerente de Marketing - FinTech Solutions</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="testimonial-card">
+                        <p class="mb-4">"O app desenvolvido superou nossas expectativas em usabilidade e performance. Nossos clientes adoraram a experiência."</p>
+                        <div class="d-flex align-items-center">
+                            <img src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/42ab8892-20e7-44d3-aa68-c0f73abe1bee.png" alt="Foto de Roberto Ferreira, CEO da Startup Saúde+" class="client-img">
+                            <div>
+                                <h6 class="mb-0">Roberto Ferreira</h6>
+                                <small class="text-muted">CEO - Startup Saúde+</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 my-5">
+        <div class="container">
+            <h2 class="text-center section-title">Fale Conosco</h2>
+            <div class="row">
+                <div class="col-lg-6 mb-5 mb-lg-0">
+                    <form id="contactForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <input type="text" class="form-control" placeholder="Seu nome" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <input type="email" class="form-control" placeholder="Seu e-mail" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Assunto">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Sua mensagem" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar mensagem</button>
+                    </form>
+                </div>
+                <div class="col-lg-6">
+                    <div class="p-4 bg-light rounded">
+                        <h4 class="mb-4">Informações de Contato</h4>
+                        <div class="d-flex mb-4">
+                            <i class="bi bi-geo-alt-fill me-3 text-primary"></i>
+                            <div>
+                                <h6 class="mb-0">Endereço</h6>
+                                <p class="mb-0">Rua da Inovação, 123 - São Paulo/SP</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <i class="bi bi-envelope-fill me-3 text-primary"></i>
+                            <div>
+                                <h6 class="mb-0">E-mail</h6>
+                                <p class="mb-0">contato@techvision.com.br</p>
+                            </div>
+                        </div>
+                        <div class="d-flex mb-4">
+                            <i class="bi bi-telephone-fill me-3 text-primary"></i>
+                            <div>
+                                <h6 class="mb-0">Telefone</h6>
+                                <p class="mb-0">(11) 9999-9999</p>
+                            </div>
+                        </div>
+                        <div class="mt-4">
+                            <h6 class="mb-3">Redes Sociais</h6>
+                            <a href="#" class="social-icon"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="social-icon"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="social-icon"><i class="bi bi-linkedin"></i></a>
+                            <a href="#" class="social-icon"><i class="bi bi-twitter"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-5 mb-lg-0">
+                    <h4 class="text-white mb-4">TechVision</h4>
+                    <p>Transformando negócios através de soluções tecnológicas inovadoras.</p>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-5 mb-md-0">
+                    <h5 class="text-white mb-4">Links Rápidos</h5>
+                    <div class="footer-links">
+                        <a href="#home">Início</a>
+                        <a href="#services">Serviços</a>
+                        <a href="#about">Sobre</a>
+                        <a href="#portfolio">Portfólio</a>
+                        <a href="#contact">Contato</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-5 mb-md-0">
+                    <h5 class="text-white mb-4">Serviços</h5>
+                    <div class="footer-links">
+                        <a href="#">Desenvolvimento Web</a>
+                        <a href="#">Aplicativos Mobile</a>
+                        <a href="#">Soluções em Cloud</a>
+                        <a href="#">Consultoria em TI</a>
+                        <a href="#">Inteligência Artificial</a>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6">
+                    <h5 class="text-white mb-4">Newsletter</h5>
+                    <p>Inscreva-se para receber nossas novidades.</p>
+                    <form class="mt-3">
+                        <div class="input-group mb-3">
+                            <input type="email" class="form-control" placeholder="Seu e-mail" aria-label="Seu e-mail">
+                            <button class="btn btn-primary" type="button">Enviar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="copyright text-center">
+                <p class="mb-0">© 2023 TechVision. Todos os direitos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </div>
+
+    <!-- Bootstrap JS Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+        
+        // Back to top button
+        const backToTopButton = document.querySelector('.back-to-top');
+        window.addEventListener('scroll', function() {
+            if (window.scrollY > 300) {
+                backToTopButton.classList.add('active');
+            } else {
+                backToTopButton.classList.remove('active');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Form submission
+        const contactForm = document.getElementById('contactForm');
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                alert('Mensagem enviada com sucesso! Entraremos em contato em breve.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>
+
